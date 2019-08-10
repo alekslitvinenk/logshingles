@@ -5,5 +5,6 @@ object Protocol {
     host: String,
     path: String,
     ip: String,
+    userAgent: String,
   )
 }
