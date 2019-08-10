@@ -3,7 +3,7 @@ lazy val root = (project in file("."))
     name := "hitcounter",
     version := "0.1",
     scalaVersion := "2.12.8",
-    mainClass := Some("com.myapp.Main"),
+    mainClass := Some("com.alekslitvinenk.hitcounter.Main"),
 
     libraryDependencies ++= Seq(
       "com.typesafe.slick" %% "slick" % "3.3.0",
