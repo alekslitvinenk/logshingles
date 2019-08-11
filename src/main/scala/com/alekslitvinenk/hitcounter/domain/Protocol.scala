@@ -6,5 +6,14 @@ object Protocol {
     path: String,
     ip: String,
     userAgent: String,
-  )
+  ) {
+    override def toString: String = {
+      s"""
+        |Host: $host,
+        |Path: $path,
+        |RemoteIP: $ip,
+        |UserAgent: $userAgent
+      """.stripMargin
+    }
+  }
 }
