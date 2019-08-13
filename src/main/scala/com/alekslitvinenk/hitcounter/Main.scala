@@ -1,12 +1,13 @@
 package com.alekslitvinenk.hitcounter
 
-import akka.actor.{ActorLogging, ActorSystem}
+import akka.actor.ActorSystem
 import akka.event.Logging
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{Directive0, Route}
 import akka.stream.ActorMaterializer
+import com.alekslitvinenk.hitcounter.domain.Protocol.Hit
 
 import scala.concurrent.ExecutionContext
 import scala.util.Try
@@ -25,7 +26,20 @@ object Main extends App {
   private def logRequest(r: Route): Directive0 =
     extractRequest.flatMap { request =>
       extractClientIP.flatMap { ip =>
-        log.debug("Some")
+
+        val headersMap = request.headers
+          .map { h =>
+            h.lowercaseName -> h.value()
+          }.toMap
+
+        val hit = Hit(
+          host = headersMap("host"),
+          path = request.uri.path.toString(),
+          ip = ip.toOption.map(_.getHostAddress).getOrElse("unknown"),
+          userAgent = headersMap("user-agent"),
+        )
+
+        log.info(hit.toString)
         pass
       }
     }
