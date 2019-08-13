@@ -23,6 +23,7 @@ object Main extends App {
   val interface = Try(args(0)).getOrElse("localhost")
   val port = Try(args(0).toInt).getOrElse(8080)
 
+  //FixMe: Move to object with custom directives
   private def logRequest(r: Route): Directive0 =
     extractRequest.flatMap { request =>
       extractClientIP.flatMap { ip =>
