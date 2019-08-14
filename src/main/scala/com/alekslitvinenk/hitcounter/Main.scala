@@ -1,13 +1,11 @@
 package com.alekslitvinenk.hitcounter
 
 import akka.actor.ActorSystem
-import akka.event.Logging
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
-import akka.http.scaladsl.server.{Directive0, Route}
 import akka.stream.ActorMaterializer
-import com.alekslitvinenk.hitcounter.domain.Protocol.Hit
+import com.alekslitvinenk.hitcounter.dsl.HitCounterDirectives._
 
 import scala.concurrent.ExecutionContext
 import scala.util.Try
@@ -18,32 +16,8 @@ object Main extends App {
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   implicit val executionContext: ExecutionContext = system.dispatcher
 
-  val log = Logging(system, this.getClass)
-
   val interface = Try(args(0)).getOrElse("localhost")
   val port = Try(args(0).toInt).getOrElse(8080)
-
-  //FixMe: Move to object with custom directives
-  private def logRequest(r: Route): Directive0 =
-    extractRequest.flatMap { request =>
-      extractClientIP.flatMap { ip =>
-
-        val headersMap = request.headers
-          .map { h =>
-            h.lowercaseName -> h.value()
-          }.toMap
-
-        val hit = Hit(
-          host = headersMap("host"),
-          path = request.uri.path.toString(),
-          ip = ip.toOption.map(_.getHostAddress).getOrElse("unknown"),
-          userAgent = headersMap("user-agent"),
-        )
-
-        log.info(hit.toString)
-        pass
-      }
-    }
 
   val route =
     get {
@@ -52,7 +26,7 @@ object Main extends App {
       }
     }
 
-  val clientRouteLogged = logRequest(route)(route)
+  val clientRouteLogged = logHit(route)
 
   Http().bindAndHandle(clientRouteLogged, interface, port)
 }
