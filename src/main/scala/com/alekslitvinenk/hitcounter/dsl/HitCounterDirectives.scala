@@ -6,6 +6,7 @@ import com.alekslitvinenk.hitcounter.domain.Protocol.Hit
 
 object HitCounterDirectives {
 
+  //FixMe: make the extraction lazy per request
   private def extractHit: Directive1[Hit] =
     extractRequest.flatMap { request =>
       extractClientIP.map { ip =>
