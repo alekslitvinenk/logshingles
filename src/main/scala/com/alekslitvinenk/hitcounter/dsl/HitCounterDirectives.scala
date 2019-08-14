@@ -1,8 +1,9 @@
 package com.alekslitvinenk.hitcounter.dsl
 
-import akka.http.scaladsl.server.{Directive0, Directive1}
 import akka.http.scaladsl.server.Directives.{extractClientIP, extractLog, extractRequest, pass}
+import akka.http.scaladsl.server.{Directive0, Directive1}
 import com.alekslitvinenk.hitcounter.domain.Protocol.Hit
+import com.alekslitvinenk.hitcounter.db.Table.MySQL._
 
 object HitCounterDirectives {
 
@@ -24,6 +25,17 @@ object HitCounterDirectives {
         )
       }
     }
+
+  def insertRequestIntoMySqlTable: Directive0 = {
+    import slick.jdbc.MySQLProfile.api._
+
+    extractHit.flatMap { hit =>
+      //FixMe: Call db.run
+      hitTable.schema.createIfNotExists
+      hitTable += hit
+      pass
+    }
+  }
 
   def logHit: Directive0 =
     extractLog.flatMap { log =>
