@@ -1,6 +1,7 @@
 package com.alekslitvinenk.hitcounter.db
 
 import com.alekslitvinenk.hitcounter.domain.Protocol
+import java.sql.Timestamp
 
 object Table {
   object MySQL {
@@ -12,10 +13,11 @@ object Table {
       def path = column[String]("path", O.Length(512))
       def ip = column[String]("client_ip", O.Length(30))
       def userAgent = column[String]("user_agent", O.Length(512))
+      def createdAt = column[Timestamp]("created", O.SqlType("timestamp default now()"))
       def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
       override def * = (
-        host, path, ip, userAgent, id
+        host, path, ip, userAgent,createdAt, id
       ) <> (Protocol.Hit.tupled, Protocol.Hit.unapply)
     }
 

@@ -1,11 +1,15 @@
 package com.alekslitvinenk.hitcounter.domain
 
+import java.sql.Timestamp
+import java.time.Instant
+
 object Protocol {
   case class Hit(
     host: String,
     path: String,
     ip: String,
     userAgent: String,
+    createdAt: Timestamp = Timestamp.from(Instant.now()),
     id: Long = 0L,
   ) {
     override def toString: String = {
