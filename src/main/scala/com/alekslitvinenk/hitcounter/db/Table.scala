@@ -15,7 +15,7 @@ object Table {
       def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
       override def * = (
-        host, path, ip, userAgent
+        host, path, ip, userAgent, id
       ) <> (Protocol.Hit.tupled, Protocol.Hit.unapply)
     }
 

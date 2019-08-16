@@ -6,6 +6,7 @@ object Protocol {
     path: String,
     ip: String,
     userAgent: String,
+    id: Long = 0L,
   ) {
     override def toString: String = {
       s"""
