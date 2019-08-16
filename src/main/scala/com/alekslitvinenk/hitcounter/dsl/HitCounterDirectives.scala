@@ -4,8 +4,11 @@ import akka.http.scaladsl.server.Directives.{extractClientIP, extractLog, extrac
 import akka.http.scaladsl.server.{Directive0, Directive1}
 import com.alekslitvinenk.hitcounter.domain.Protocol.Hit
 import com.alekslitvinenk.hitcounter.db.Table.MySQL._
+import slick.jdbc.MySQLProfile.api._
 
 object HitCounterDirectives {
+
+  private val DB = Database.forConfig("slick")
 
   //FixMe: make the extraction lazy per request
   private def extractHit: Directive1[Hit] =
@@ -16,6 +19,7 @@ object HitCounterDirectives {
           .map { h =>
             h.lowercaseName -> h.value()
           }.toMap
+          .withDefaultValue("unknown")
 
         Hit(
           host = headersMap("host"),
@@ -26,16 +30,17 @@ object HitCounterDirectives {
       }
     }
 
-  def insertRequestIntoMySqlTable: Directive0 = {
-    import slick.jdbc.MySQLProfile.api._
-
+  def insertRequestIntoMySqlTable: Directive0 =
     extractHit.flatMap { hit =>
-      //FixMe: Call db.run
-      hitTable.schema.createIfNotExists
-      hitTable += hit
+      DB.run(
+        DBIO.seq(
+          hitTable.schema.createIfNotExists,
+          hitTable += hit,
+        )
+      )
+
       pass
     }
-  }
 
   def logHit: Directive0 =
     extractLog.flatMap { log =>

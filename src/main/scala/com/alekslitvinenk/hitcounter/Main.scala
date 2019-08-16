@@ -16,17 +16,17 @@ object Main extends App {
   implicit val materializer: ActorMaterializer = ActorMaterializer()
   implicit val executionContext: ExecutionContext = system.dispatcher
 
-  val interface = Try(args(0)).getOrElse("localhost")
-  val port = Try(args(0).toInt).getOrElse(8080)
+  private val interface = Try(args(0)).getOrElse("localhost")
+  private val port = Try(args(0).toInt).getOrElse(8080)
 
-  val route =
+  private val route =
     get {
       extractRequest { request =>
         complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, request.uri.path.toString()))
       }
     }
 
-  val clientRouteLogged = logHit(route)
+  private val clientRouteHit= insertRequestIntoMySqlTable(logHit(route))
 
-  Http().bindAndHandle(clientRouteLogged, interface, port)
+  Http().bindAndHandle(clientRouteHit, interface, port)
 }
