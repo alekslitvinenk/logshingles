@@ -1,6 +1,6 @@
-package com.alekslitvinenk.hitcounter.db
+package com.alekslitvinenk.logshingles.db
 
-import com.alekslitvinenk.hitcounter.domain.Protocol
+import com.alekslitvinenk.logshingles.domain.Protocol
 import java.sql.Timestamp
 
 object Table {

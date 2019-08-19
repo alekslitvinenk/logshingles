@@ -1,11 +1,11 @@
-package com.alekslitvinenk.hitcounter
+package com.alekslitvinenk.logshingles
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
 import akka.http.scaladsl.model.{ContentTypes, HttpEntity}
 import akka.http.scaladsl.server.Directives._
 import akka.stream.ActorMaterializer
-import com.alekslitvinenk.hitcounter.dsl.HitCounterDirectives._
+import com.alekslitvinenk.logshingles.dsl.HitCounterDirectives._
 
 import scala.concurrent.ExecutionContext
 import scala.util.Try

@@ -13,11 +13,11 @@ This library allows simple request loging for Akka-Http in any of the following 
 ## 🚀Quick start
 1. Add dependency to your sbt project:
    ```scala
-   libraryDependencies += "com.alekslitvinenk" %% "log-shingles" % "0.1",
+   libraryDependencies += "com.alekslitvinenk" %% "logshingles" % "0.1",
    ```
  2. Use log-shingles directives to wrap akka-http routes:
     ```scala
-    import com.alekslitvinenk.log-shingles.dsl._
+    import com.alekslitvinenk.logshingles.dsl._
     
     val route =
       path("somepath") {

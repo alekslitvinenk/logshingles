@@ -1,9 +1,9 @@
-package com.alekslitvinenk.hitcounter.dsl
+package com.alekslitvinenk.logshingles.dsl
 
 import akka.http.scaladsl.server.Directives.{extractClientIP, extractLog, extractRequest, pass}
 import akka.http.scaladsl.server.{Directive0, Directive1}
-import com.alekslitvinenk.hitcounter.domain.Protocol.Hit
-import com.alekslitvinenk.hitcounter.db.Table.MySQL._
+import com.alekslitvinenk.logshingles.domain.Protocol.Hit
+import com.alekslitvinenk.logshingles.db.Table.MySQL._
 import slick.jdbc.MySQLProfile.api._
 
 object HitCounterDirectives {

@@ -1,4 +1,4 @@
-package com.alekslitvinenk.hitcounter.domain
+package com.alekslitvinenk.logshingles.domain
 
 import java.sql.Timestamp
 import java.time.Instant
