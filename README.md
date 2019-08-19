@@ -1,4 +1,4 @@
-# 🔶🔷🔶 Log-Shingles
+# ♦️ Log-Shingles
 
 This library allows simple request loging for Akka-Http in any of the following format:
 1. Logback
