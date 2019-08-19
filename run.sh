@@ -5,9 +5,9 @@ docker run -d \
 --rm \
 -v /data/logs/hitcounter:/var/log \
 -e APP_LOG_APPENDER=rollingFile \
--e DB_HOST=172.17.0.2 \
+-e DB_HOST=167.71.114.232 \
 -e DB_NAME=hitcount \
--e DB_USER=<user> \
--e DB_PASSWORD=<password> \
+-e DB_USER=root \
+-e DB_PASSWORD=jobjob \
 alekslitvinenk/hitcounter \
  0.0.0.0 8080

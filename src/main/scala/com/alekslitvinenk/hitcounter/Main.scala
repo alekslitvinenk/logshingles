@@ -19,7 +19,7 @@ object Main extends App {
   private val interface = Try(args(0)).getOrElse("localhost")
   private val port = Try(args(0).toInt).getOrElse(8080)
 
-  private val route =
+  val route =
     get {
       extractRequest { request =>
         complete(HttpEntity(ContentTypes.`text/html(UTF-8)`, request.uri.path.toString()))
