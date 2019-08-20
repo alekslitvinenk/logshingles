@@ -1,9 +1,10 @@
+
 lazy val root = (project in file("."))
   .settings(
-    name := "hitcounter",
+    organization := "com.alekslitvinenk",
+    name := "logshingles",
     version := "0.1",
     scalaVersion := "2.12.8",
-    mainClass := Some("com.alekslitvinenk.hitcounter.Main"),
 
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http" % "10.1.8",
@@ -22,3 +23,11 @@ lazy val root = (project in file("."))
 
     unmanagedResourceDirectories in Compile += { baseDirectory.value / "src/main/resources" }
   )
+
+addCommandAlias(
+  "build",
+  """|;
+     |clean;
+     |assembly;
+     |publishLocal;
+  """.stripMargin)

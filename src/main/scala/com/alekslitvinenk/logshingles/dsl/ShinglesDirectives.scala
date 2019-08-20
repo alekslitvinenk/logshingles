@@ -6,7 +6,7 @@ import com.alekslitvinenk.logshingles.domain.Protocol.Hit
 import com.alekslitvinenk.logshingles.db.Table.MySQL._
 import slick.jdbc.MySQLProfile.api._
 
-object HitCounterDirectives {
+object ShinglesDirectives {
 
   private val DB = Database.forConfig("slick")
 
@@ -30,10 +30,11 @@ object HitCounterDirectives {
       }
     }
 
-  def insertRequestIntoMySqlTable: Directive0 =
+  def sqlShingle: Directive0 =
     extractHit.flatMap { hit =>
       DB.run(
         DBIO.seq(
+          //FixMe: Create table lazily during app initialization
           hitTable.schema.createIfNotExists,
           hitTable += hit,
         )
@@ -42,7 +43,7 @@ object HitCounterDirectives {
       pass
     }
 
-  def logHit: Directive0 =
+  def logbackShingle: Directive0 =
     extractLog.flatMap { log =>
       extractHit.flatMap { hit =>
         log.info(hit.toString)
