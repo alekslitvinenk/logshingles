@@ -5,6 +5,7 @@ lazy val root = (project in file("."))
     name := "logshingles",
     version := "0.1",
     scalaVersion := "2.12.8",
+    coverageEnabled := true,
 
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http" % "10.1.8",
