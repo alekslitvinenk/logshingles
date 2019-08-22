@@ -29,5 +29,4 @@ addCommandAlias(
   """|;
      |clean;
      |assembly;
-     |publishLocal;
   """.stripMargin)

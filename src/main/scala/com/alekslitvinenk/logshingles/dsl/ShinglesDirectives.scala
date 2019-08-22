@@ -8,7 +8,7 @@ import slick.jdbc.MySQLProfile.api._
 
 object ShinglesDirectives {
 
-  private val DB = Database.forConfig("slick")
+  private lazy val DB = Database.forConfig("slick")
 
   //FixMe: make the extraction lazy per request
   private def extractHit: Directive1[Hit] =
