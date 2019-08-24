@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/alekslitvinenk/hitcounter.svg?branch=master)](https://travis-ci.org/alekslitvinenk/hitcounter)
 [![Coverage Status](https://coveralls.io/repos/github/alekslitvinenk/hitcounter/badge.svg?branch=master)](https://coveralls.io/github/alekslitvinenk/hitcounter?branch=master)
+![GitHub](https://img.shields.io/github/license/alekslitvinenk/hitcounter)
 # ♦️ Log-Shingles
 
 This library allows simple request loging for Akka-Http in any of the following format:
