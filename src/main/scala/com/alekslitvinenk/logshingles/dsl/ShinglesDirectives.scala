@@ -1,6 +1,6 @@
 package com.alekslitvinenk.logshingles.dsl
 
-import akka.http.scaladsl.server.Directives.{extractClientIP, extractLog, extractRequest, pass}
+import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.{Directive0, Directive1}
 import com.alekslitvinenk.logshingles.domain.Protocol.Hit
 import com.alekslitvinenk.logshingles.db.Table.MySQL._
@@ -13,6 +13,7 @@ object ShinglesDirectives {
   //FixMe: make the extraction lazy per request
   private def extractHit: Directive1[Hit] =
     extractRequest.flatMap { request =>
+      extr
       extractClientIP.map { ip =>
 
         val headersMap = request.headers
