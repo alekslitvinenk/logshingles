@@ -17,7 +17,7 @@ lazy val root = (project in file("."))
       "mysql" % "mysql-connector-java" % "8.0.14",
       "org.scalatest" %% "scalatest" % "3.0.8" % Test,
       "org.scalamock" %% "scalamock" % "4.4.0" % Test,
-      "com.typesafe.akka" %% "akka-stream-testkit" % "2.5.24" % Test,
+      "com.typesafe.akka" %% "akka-stream-testkit" % "2.5.25" % Test,
       "com.typesafe.akka" %% "akka-http-testkit" % "10.1.9"  % Test,
     ),
 
