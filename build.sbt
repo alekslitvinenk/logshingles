@@ -15,7 +15,7 @@ lazy val root = (project in file("."))
       "com.typesafe.slick" %% "slick" % "3.3.2",
       "com.typesafe.slick" %% "slick-hikaricp" % "3.3.2",
       "mysql" % "mysql-connector-java" % "8.0.18",
-      "org.scalatest" %% "scalatest" % "3.0.8" % Test,
+      "org.scalatest" %% "scalatest" % "3.1.0" % Test,
       "org.scalamock" %% "scalamock" % "4.4.0" % Test,
       "com.typesafe.akka" %% "akka-stream-testkit" % "2.6.0" % Test,
       "com.typesafe.akka" %% "akka-http-testkit" % "10.1.10"  % Test,
