@@ -4,11 +4,12 @@ import java.io.{ByteArrayOutputStream, PrintStream}
 
 import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.testkit.ScalatestRouteTest
-import org.scalatest.{Matchers, WordSpec}
 
 import com.alekslitvinenk.logshingles.dsl.ShinglesDirectives._
+import org.scalatest.matchers.should.Matchers
+import org.scalatest.wordspec.AnyWordSpec
 
-class ShingleDirectivesSpec extends WordSpec
+class ShingleDirectivesSpec extends AnyWordSpec
   with Matchers
   with ScalatestRouteTest {
 
