@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
       "com.typesafe.akka" %% "akka-stream" % "2.6.6",
       "com.typesafe.akka" %% "akka-http-spray-json" % "10.1.11",
       "com.typesafe.akka" %% "akka-slf4j" % "2.6.6",
-      "ch.qos.logback" % "logback-classic" % "1.2.3",
+      "ch.qos.logback" % "logback-classic" % "1.2.13",
       "com.typesafe.slick" %% "slick" % "3.3.2",
       "com.typesafe.slick" %% "slick-hikaricp" % "3.3.2",
       "mysql" % "mysql-connector-java" % "8.0.18",
