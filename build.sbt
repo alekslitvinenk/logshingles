@@ -4,7 +4,7 @@ lazy val root = (project in file("."))
     organization := "com.alekslitvinenk",
     name := "logshingles",
     version := "0.1",
-    scalaVersion := "2.12.8",
+    scalaVersion := "2.12.19",
 
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-http" % "10.1.11",
